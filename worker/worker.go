@@ -6,13 +6,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 )
 
 func main() {
 
 	topic := "comments"
-	worker, err := connectConsumer([]string{"localhost:9092", "127.0.0.1:9092"})
+	worker, err := connectConsumer([]string{"127.0.0.1:9092"})
 	if err != nil {
 		panic(err)
 	}

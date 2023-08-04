@@ -20,14 +20,6 @@ build:
 	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go build -o ./producer/producer ./producer/producer.go
 	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go build -o ./worker/worker ./worker/worker.go
 
-#runp: @ Run producer
-runp:
-	@export GOFLAGS=$(GOFLAGS); go run ./producer/producer.go
-
-#runc: @ Run consumer
-runc:
-	@export GOFLAGS=$(GOFLAGS); go run ./worker/worker.go
-
 #get: @ Download and install dependency packages
 get:
 	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go get ./... ; go mod tidy
@@ -52,3 +44,19 @@ update:
 #version: @ Print current version(tag)
 version:
 	@echo $(shell git describe --tags --abbrev=0)
+
+#runp: @ Run producer
+runp:
+	@export GOFLAGS=$(GOFLAGS); go run ./producer/producer.go
+
+#runc: @ Run consumer
+runc:
+	@export GOFLAGS=$(GOFLAGS); go run ./worker/worker.go
+
+#startk: @ Start Kafka
+startk:
+	@docker-compose -f docker-compose.yaml up -d
+
+#stopk: @ Stop Kafka
+stopk:
+	@docker-compose -f docker-compose.yaml down

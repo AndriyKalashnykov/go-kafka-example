@@ -1,9 +1,9 @@
-module github.com/zaynkorai/kafka
+module github.com/AndriyKalashnykov/go-kafka-example
 
 go 1.20
 
 require (
-	github.com/Shopify/sarama v1.38.1
+	github.com/IBM/sarama v1.40.1
 	github.com/gofiber/fiber/v2 v2.48.0
 )
 
@@ -35,5 +35,5 @@ require (
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/crypto v0.11.0 // indirect
 	golang.org/x/net v0.13.0 // indirect
-	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
 )
