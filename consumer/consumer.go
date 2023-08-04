@@ -12,14 +12,14 @@ import (
 func main() {
 
 	topic := "comments"
-	worker, err := connectConsumer([]string{"127.0.0.1:9092"})
+	consumer, err := connectConsumer([]string{"127.0.0.1:9092"})
 	if err != nil {
 		panic(err)
 	}
 
 	// Calling ConsumePartition. It will open one connection per broker
 	// and share it for all partitions that live on it.
-	consumer, err := worker.ConsumePartition(topic, 0, sarama.OffsetOldest)
+	partitionConsumer, err := consumer.ConsumePartition(topic, 0, sarama.OffsetOldest)
 	if err != nil {
 		panic(err)
 	}
@@ -34,9 +34,9 @@ func main() {
 	go func() {
 		for {
 			select {
-			case err := <-consumer.Errors():
+			case err := <-partitionConsumer.Errors():
 				fmt.Println(err)
-			case msg := <-consumer.Messages():
+			case msg := <-partitionConsumer.Messages():
 				msgCount++
 				fmt.Printf("Received message Count %d: | Topic(%s) | Message(%s) \n", msgCount, string(msg.Topic), string(msg.Value))
 			case <-sigchan:
@@ -49,7 +49,7 @@ func main() {
 	<-doneCh
 	fmt.Println("Processed", msgCount, "messages")
 
-	if err := worker.Close(); err != nil {
+	if err := consumer.Close(); err != nil {
 		panic(err)
 	}
 

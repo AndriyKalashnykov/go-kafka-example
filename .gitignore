@@ -2,4 +2,4 @@
 dist/
 .idea
 producer/producer
-worker/worker
+consumer/consumer

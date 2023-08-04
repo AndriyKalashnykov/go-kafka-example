@@ -21,7 +21,7 @@ func main() {
 
 	api.Post("/comments", createComment)
 
-	app.Listen(":3000")
+	app.Listen(":4000")
 
 }
 
@@ -42,7 +42,7 @@ func ConnectProducer(brokersUrl []string) (sarama.SyncProducer, error) {
 
 func PushCommentToQueue(topic string, message []byte) error {
 
-	brokersUrl := []string{"localhost:9092"}
+	brokersUrl := []string{"127.0.0.1:9092"}
 	producer, err := ConnectProducer(brokersUrl)
 	if err != nil {
 		return err

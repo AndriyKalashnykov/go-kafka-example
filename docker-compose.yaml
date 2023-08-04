@@ -36,6 +36,21 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
 
+  kafka-ui:
+    depends_on:
+      - kafka
+    networks:
+      kafka-net:
+        ipv4_address: 172.28.1.4
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 3000:8080
+    volumes:
+      - ./config/kui-config.yml:/etc/kafkaui/dynamic_config.yaml
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+
 volumes:
   kafka_data:
     driver: local

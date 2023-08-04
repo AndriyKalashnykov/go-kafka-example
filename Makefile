@@ -18,7 +18,7 @@ test:
 #build: @ Build
 build:
 	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go build -o ./producer/producer ./producer/producer.go
-	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go build -o ./worker/worker ./worker/worker.go
+	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); go build -o ./consumer/consumer ./consumer/consumer.go
 
 #get: @ Download and install dependency packages
 get:
