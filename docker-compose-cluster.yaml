@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 x-kafka-image: &kafka-image docker.io/bitnami/kafka:3.5.1
 
