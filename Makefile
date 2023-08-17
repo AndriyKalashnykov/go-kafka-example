@@ -39,7 +39,7 @@ release:
 #update: @ Update dependency packages to latest versions
 update:
 	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); cd ./producer; go get -u; go mod tidy; cd ..
-	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); cd ./worker; go get -u; go mod tidy; cd ..
+	@export GOPRIVATE=$(GOPRIVATE); export GOFLAGS=$(GOFLAGS); cd ./consumer; go get -u; go mod tidy; cd ..
 
 #version: @ Print current version(tag)
 version:
@@ -51,7 +51,7 @@ runp:
 
 #runc: @ Run consumer
 runc:
-	@export GOFLAGS=$(GOFLAGS); go run ./worker/worker.go
+	@export GOFLAGS=$(GOFLAGS); go run ./consumer/consumer.go
 
 #startk: @ Start Kafka
 startk:
